@@ -17,6 +17,8 @@ public class Stock {
 
 	// Endringsmetoden kaller alle lytternes lyttermetoder
 	public void setPrice(double newPrice) {
+		// Tilstanden endres etter at lyttermetoden er kalt for at lytterne kan maale endringen
+		
 		firePriceChanged(newPrice);
 		this.price = newPrice;
 	}

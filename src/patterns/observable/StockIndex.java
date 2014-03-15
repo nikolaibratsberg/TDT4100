@@ -21,5 +21,9 @@ public class StockIndex implements StockListener{
 		return this.index;
 	}
 	
+	public String toString() {
+		return "The stock index " + name + " is " + index;
+	}
+	
 	
 }
