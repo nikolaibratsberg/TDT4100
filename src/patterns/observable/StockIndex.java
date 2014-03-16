@@ -1,24 +1,37 @@
 package patterns.observable;
 
+
+
 public class StockIndex implements StockListener{
 	
 	private String name;
-	private double index;
+	private double index; 
+	
 
 	public StockIndex(String name, Stock... stocks) {
 		this.name = name;
-		
+
 		for (Stock s : stocks) {
+			s.addStockListener(this);
 			this.index += s.getPrice();
-		}
-//		s1.addStockListener(this); 
-//		s2.addStockListener(this); 
-//		s3.addStockListener(this);
-//		this.index = s1.getPrice() + s2.getPrice() + s3.getPrice();
+		
+		}	
 	}
 	
-	public void stockPriceChanged(Stock stock, double newPrice) {
-		this.index += stock.getPrice() - newPrice;
+	public void stockPriceChanged(Stock stock, double oldPrice, double newPrice) {
+		this.index += oldPrice - newPrice;
+	}
+	
+	
+	public void addStock(Stock stock) {
+		stock.addStockListener(this);
+		this.index += stock.getPrice();
+	}
+	
+	public void removeStock(Stock stock) {
+		stock.removeStockListener(this);
+		this.index -= stock.getPrice();
+		
 	}
 	
 	public double getIndex() {
