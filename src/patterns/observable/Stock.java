@@ -19,7 +19,7 @@ public class Stock {
 		listeners = new HashMap<StockListener,ArrayList<Double>>();
 	}
 
-	// Endringsmetoden kaller alle lytternes lyttermetoder
+	// Endringsmetoden kaller alle lytternes lyttermetode
 	public void setPrice(double newPrice) {
 		if (newPrice <= 0) {
 			throw new IllegalArgumentException("Stock price must be larger than zero");
@@ -65,8 +65,7 @@ public class Stock {
 	
 	//Hjelpemetode for aa oppdatere lyttere
 	private void firePriceChanged(double newPrice) {
-		for (StockListener listener : listeners.keySet()) {  
-			//
+		for (StockListener listener : listeners.keySet()) { 
 			if (listeners.get(listener) == null) {
 				listener.stockPriceChanged(this, this.price, newPrice);
 			}
