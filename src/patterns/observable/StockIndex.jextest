@@ -80,7 +80,34 @@ sequence removeStock {
 	
 }
 
+
+
+sequence changePrice {
+	
+	--
+	facebook.setPrice(67.0)
+	-->
+	
+	state {
+		severalIndex.getIndex() == 601.98
+	} 
+	
+	--
+	facebook.setPrice(69.0)
+	-->
+	
+	state {
+		severalIndex.getIndex() == 603.98
+	}
+	
+	
+}
+
+
 method boolean ==(double n1, double n2) {
 	val epsilon = 0.0000001 // avrundingsfeil
 	n1 - epsilon <= n2 && n1 + epsilon >= n2
 }
+
+
+

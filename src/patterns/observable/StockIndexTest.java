@@ -108,6 +108,15 @@ public class StockIndexTest extends TestCase {
     
   }
   
+  @JExercise(tests = "StockIndex(String,patterns.observable.Stock[])", description = "Tests \n\t\tthe following sequence:\n\t\t<ul>\n\t\t<li>facebook.setPrice(67.0)</li>\n\t\t<li>facebook.setPrice(69.0)</li>\n\t\t</ul>\n")
+  public void testChangePrice() {
+    _transition_exprAction__changePrice_transitions0_actions0();
+    _test__changePrice_transitions0_effect_state();
+    _transition_exprAction__changePrice_transitions1_actions0();
+    _test__changePrice_transitions1_effect_state();
+    
+  }
+  
   private void _test__constructorEmpty_transitions0_effect_state() {
     _test__constructorEmpty_transitions0_effect_state_objectTests0_test();
     
@@ -236,6 +245,52 @@ public class StockIndexTest extends TestCase {
     double _index = this.severalIndex.getIndex();
     boolean _equals = this.operator_equals(_index, 67.8);
     assertTrue("severalIndex.getIndex() == 67.8 failed after severalIndex.removeStock(apple)", _equals);
+    
+  }
+  
+  private void _transition_exprAction__changePrice_transitions0_actions0() {
+    try {
+      
+      this.facebook.setPrice(67.0);
+      } catch (junit.framework.AssertionFailedError error) {
+      fail("facebook.setPrice(67.0) failed: " + error.getMessage());
+    }
+    
+  }
+  
+  private void _test__changePrice_transitions0_effect_state() {
+    _test__changePrice_transitions0_effect_state_objectTests0_test();
+    
+  }
+  
+  private void _test__changePrice_transitions0_effect_state_objectTests0_test() {
+    
+    double _index = this.severalIndex.getIndex();
+    boolean _equals = this.operator_equals(_index, 601.98);
+    assertTrue("severalIndex.getIndex() == 601.98 failed after facebook.setPrice(67.0)", _equals);
+    
+  }
+  
+  private void _transition_exprAction__changePrice_transitions1_actions0() {
+    try {
+      
+      this.facebook.setPrice(69.0);
+      } catch (junit.framework.AssertionFailedError error) {
+      fail("facebook.setPrice(69.0) failed: " + error.getMessage());
+    }
+    
+  }
+  
+  private void _test__changePrice_transitions1_effect_state() {
+    _test__changePrice_transitions1_effect_state_objectTests0_test();
+    
+  }
+  
+  private void _test__changePrice_transitions1_effect_state_objectTests0_test() {
+    
+    double _index = this.severalIndex.getIndex();
+    boolean _equals = this.operator_equals(_index, 603.98);
+    assertTrue("severalIndex.getIndex() == 603.98 failed after facebook.setPrice(69.0)", _equals);
     
   }
   
