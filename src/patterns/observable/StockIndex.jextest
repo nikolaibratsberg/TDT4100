@@ -1,0 +1,86 @@
+test patterns.observable.StockIndex
+
+instance Stock facebook = new Stock("FB", 67.80)
+instance Stock apple = new Stock("AAPL", 534.98)
+
+instance emptyIndex = new StockIndex("OSEBX")
+instance oneIndex = new StockIndex("OSEBX", facebook)
+instance severalIndex = new StockIndex("OSEBX", facebook, apple)
+
+
+sequence constructorEmpty "Tests constructor with no Stock-objects as argument" {
+	
+	-->
+	state {
+		emptyIndex.getIndex() == 0.0
+	}
+	
+}
+
+
+
+sequence constructorOne "Tests constructor with a single Stock-object as argument" {
+	
+	-->
+	state {
+		oneIndex.getIndex() == 67.80
+	}
+	
+	
+}
+
+sequence constructorSeveral "Tests constructor with several Stock-objects as argument" {
+	
+	-->
+	state {
+		severalIndex.getIndex() == 602.78
+	}
+	
+	
+}
+
+sequence addStock {
+
+	--
+	emptyIndex.addStock(facebook)
+	-->
+	
+	state {
+		emptyIndex.getIndex() == 67.8
+	}
+	
+	--
+	emptyIndex.addStock(facebook)
+	-->
+	
+	state {
+		emptyIndex.getIndex() == 67.8
+	}
+	
+}
+
+
+sequence removeStock {
+	
+	--
+	severalIndex.removeStock(apple)
+	-->
+	
+	state {
+		severalIndex.getIndex() == 67.8
+	}
+	
+	--
+	severalIndex.removeStock(apple) 
+	-->
+	
+	state {
+		severalIndex.getIndex() == 67.8
+	}
+	
+}
+
+method boolean ==(double n1, double n2) {
+	val epsilon = 0.0000001 // avrundingsfeil
+	n1 - epsilon <= n2 && n1 + epsilon >= n2
+}
